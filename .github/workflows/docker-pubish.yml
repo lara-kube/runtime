@@ -39,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: lara-kube/laravel-php
+          images: ghcr.io/${{ github.repository_owner }}/php
           tags: |
             type=semver,pattern={{version}}-php${{ matrix.php-version }}
             type=ref,event=branch,enable=${{ github.ref == 'refs/heads/main' }},suffix=-php${{ matrix.php-version }}
