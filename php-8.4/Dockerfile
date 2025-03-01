@@ -32,6 +32,12 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     intl \
     pcntl
 
+# Install Redis extension
+RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
+    && apk del pcre-dev $PHPIZE_DEPS
+
 # Create a non-root user to run the application
 ARG USER_ID=1000
 ARG GROUP_ID=1000
