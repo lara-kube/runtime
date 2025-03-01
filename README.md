@@ -23,7 +23,7 @@ version: '3'
 
 services:
   app:
-    image: ghcr.io/lara-kube/laravel-php:8.3
+    image: ghcr.io/lara-kube/php:8.4
     volumes:
       - ./:/var/www/html
     working_dir: /var/www/html

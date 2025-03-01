@@ -34,8 +34,8 @@ RUN addgroup -g ${GROUP_ID} laravel && \
     adduser -u ${USER_ID} -G laravel -s /bin/sh -D laravel
 
 # Set working directory and permissions
-WORKDIR /var/www
-RUN chown -R laravel:laravel /var/www
+WORKDIR /var/www/html
+RUN chown -R laravel:laravel /var/www/html
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
