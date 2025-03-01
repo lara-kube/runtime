@@ -64,3 +64,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=${{ matrix.image-name }}
           cache-to: type=gha,scope=${{ matrix.image-name }},mode=max
+          platforms: linux/amd64,linux/arm64
