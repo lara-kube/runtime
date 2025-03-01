@@ -49,7 +49,7 @@ server {
     gzip_vary on;
 
     location ~ \.php$ {
-        try_files $uri =404;
+        try_files $uri $uri/ =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass ${PHP_FPM_HOST}:${PHP_FPM_PORT};
         fastcgi_index index.php;
