@@ -44,6 +44,7 @@ RUN chown -R laravel:laravel /var/www/html
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Configure PHP
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini

@@ -48,6 +48,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Configure PHP
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Switch to non-root user
 USER laravel
