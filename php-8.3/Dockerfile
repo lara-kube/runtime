@@ -1,5 +1,11 @@
 FROM php:8.3-fpm-alpine as base
 
+ENV PHP_OPCACHE_ENABLE=1
+ENV PHP_OPCACHE_CLI=0
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMP=1
+ENV PHP_OPCACHE_REVALIDATE_FREQ=30
+
+
 # Install system dependencies
 RUN apk add --no-cache \
     linux-headers \
