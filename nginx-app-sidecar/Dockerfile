@@ -3,8 +3,9 @@ FROM nginx:alpine
 ENV NGINX_ROOT=/var/www/html/public
 
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
-COPY entrypoint.sh /docker-entrypoint.d/40-set-nginx-root.sh
+COPY entrypoint.sh /usr/local/bin/custom-entrypoint.sh
 
-RUN chmod +x /docker-entrypoint.d/40-set-nginx-root.sh
+RUN chmod +x /usr/local/bin/custom-entrypoint.sh
 
-EXPOSE 80
+ENTRYPOINT ["/usr/local/bin/custom-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
