@@ -8,9 +8,9 @@ on:
       - 'README.md'
       - 'LICENSE'
       - '.gitignore'
-      - 'php-8.2'
-      - 'php-8.3'
-      - 'php-8.4'
+      - 'php-8.2/**'
+      - 'php-8.3/**'
+      - 'php-8.4/**'
   pull_request:
     branches: [ main ]
 
@@ -24,6 +24,11 @@ jobs:
     strategy:
       matrix:
         image-type: ["nginx-app-sidecar", "nginx-reverb-sidecar"]
+        include:
+          - image-type: "nginx-app-sidecar"
+            image-name: "nginx-app"
+          - image-type: "nginx-reverb-sidecar"
+            image-name: "nginx-reverb"
 
     steps:
       - name: Checkout code
@@ -44,7 +49,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository_owner }}/nginx-${{ matrix.image-type }}
+          images: ghcr.io/${{ github.repository_owner }}/${{ matrix.image-name }}
           tags: |
             type=semver,pattern={{version}}
             type=ref,event=branch
@@ -57,5 +62,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=nginx-${{ matrix.image-type }}
-          cache-to: type=gha,scope=nginx-${{ matrix.image-type }},mode=max
+          cache-from: type=gha,scope=${{ matrix.image-name }}
+          cache-to: type=gha,scope=${{ matrix.image-name }},mode=max

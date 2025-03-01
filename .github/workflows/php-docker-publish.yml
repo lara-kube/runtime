@@ -8,8 +8,8 @@ on:
       - 'README.md'
       - 'LICENSE'
       - '.gitignore'
-      - 'nginx-app-sidecar'
-      - 'nginx-reverb-sidecar'
+      - 'nginx-app-sidecar/**'
+      - 'nginx-reverb-sidecar/**'
   pull_request:
     branches: [ main ]
 
