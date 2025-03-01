@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image-type: ["app", "reverb"]
+        image-type: ["nginx-app-sidecar", "nginx-reverb-sidecar"]
 
     steps:
       - name: Checkout code
